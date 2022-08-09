@@ -1,13 +1,13 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 declare const THREE: any;
 
 @Component({
-  selector: 'mesh',
-  template: `<div #rendererContainer></div>`,
+  selector: 'renderer',
+  templateUrl: `./renderer.component.html`,
   styles: []
 })
-export class MeshComponent {
+export class RendererComponent {
   @ViewChild('rendererContainer') rendererContainer: ElementRef;
   
   renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -15,11 +15,13 @@ export class MeshComponent {
   camera = null;
   mesh = null;
   controls = null;
+  plane = null;
 
   constructor() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight * 3, 1, 1000);
-    this.controls = new THREE.OrbitControls(this.camera);    
+    this.camera = new THREE.OrthographicCamera(50, window.innerWidth / window.innerHeight * 3, 1, 1000);
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.plane = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ), 0 );
   }
 
   ngAfterViewInit() {
@@ -27,9 +29,6 @@ export class MeshComponent {
     this.configRenderer();
     this.configControls();
     
-    this.createMesh();
-
-    this.animate();
   }
 
   configCamera() {
@@ -52,22 +51,4 @@ export class MeshComponent {
     this.controls.update();
   }
 
-  createMesh() {
-    const material = new THREE.MeshBasicMaterial({ color: 'orange' });
-    const geometry = new THREE.BoxGeometry(100, 100, 100);
-    const cube = new THREE.Mesh(geometry, material);
-    const edges = new THREE.BoxHelper(cube, 'darkorchid');
-    
-    const group = new THREE.Group();
-    group.add(cube);
-    group.add(edges);
-    
-    this.scene.add(group);
-  }
-
-  animate() {
-    window.requestAnimationFrame(() => this.animate());
-    this.controls.update();
-    this.renderer.render(this.scene, this.camera);
-  }
 }

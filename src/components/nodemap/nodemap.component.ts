@@ -1,10 +1,10 @@
 import { Component, OnInit, OnChanges, ViewChild, ElementRef } from '@angular/core';
-import { NodeComponent } from '../node/node.component.js';
+import {NodemeshComponent} from '../nodemesh/nodemesh.component'
 declare const THREE : any
 
 @Component({
   selector: 'app-nodemap',
-  templateUrl: `<div #rendererContainer></div>`,
+  template: `<div #rendererContainer></div>`,
   styleUrls: ['./nodemap.component.css'],
 })
 export class NodemapComponent implements OnInit {
@@ -17,7 +17,7 @@ export class NodemapComponent implements OnInit {
   mesh = null;
   controls = null;
 
-  constructor(nodes: Array<NodeComponent>) {
+  constructor() {
     
   }
 
