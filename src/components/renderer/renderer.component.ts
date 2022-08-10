@@ -19,7 +19,7 @@ export class RendererComponent {
 
   constructor() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.OrthographicCamera(50, window.innerWidth / window.innerHeight * 3, 1, 1000);
+    this.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight * 3, 1, 1000);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.plane = new THREE.Plane( new THREE.Vector3( 0, 0, 1 ), 0 );
   }
@@ -29,6 +29,8 @@ export class RendererComponent {
     this.configRenderer();
     this.configControls();
     
+    
+    this.animate()
   }
 
   configCamera() {
@@ -45,10 +47,16 @@ export class RendererComponent {
   }
 
   configControls() {
-    this.controls.autoRotate = false;
+    this.controls.autoRotate = true;
     this.controls.enableZoom = true;
     this.controls.enablePan  = true;
     this.controls.update();
   }
 
+  animate()
+  {
+    window.requestAnimationFrame(() => this.animate());
+    this.controls.update()
+    this.renderer.render(this.scene, this.camera);
+  }
 }
