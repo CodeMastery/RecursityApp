@@ -8,6 +8,8 @@ declare const THREE: any;
 })
 export class NodemeshComponent implements OnInit {
   @Input() scene = null;
+  @Output() registerNode = new EventEmitter(THREE.Object3D);
+  @Output() deregisterNodes = new EventEmitter();
 
   createMesh() {
     const material = new THREE.MeshBasicMaterial({ color: 'orange' });
@@ -15,12 +17,17 @@ export class NodemeshComponent implements OnInit {
     const circle = new THREE.Mesh(geometry, material);
     const group = new THREE.Group();
     group.add(circle);
-    group.translateX(100)
+    group.translateX(100);
     this.scene.add(group);
+    this.registerNode.emit(circle);
+    
   }
 
   setMeshPositionToMouse() {}
   ngOnInit() {
     this.createMesh();
+  }
+  deleteNode() {
+    this.deregisterNodes.emit();
   }
 }

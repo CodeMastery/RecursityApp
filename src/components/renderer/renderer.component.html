@@ -4,5 +4,4 @@
   hi there my name is chad
 
 </p>
-<nodemesh [scene] = "scene" ></nodemesh>
-
+<nodemesh [scene] = "scene" (registerNode)="register($event)" (deregisterNodes)="deregister($event)"></nodemesh>
