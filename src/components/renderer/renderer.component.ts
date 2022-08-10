@@ -47,10 +47,17 @@ export class RendererComponent {
   }
 
   configControls() {
-    this.controls.autoRotate = true;
+    this.controls.autoRotate = false;
     this.controls.enableZoom = true;
     this.controls.enablePan  = true;
+    this.controls.enableRotate = false;
+    this.controls.target.set(0,0,0);
     this.controls.update();
+    this.controls.mouseButtons = {
+      Right: THREE.MOUSE.ROTATE,
+      MIDDLE: THREE.MOUSE.DOLLY,
+      LEFT: THREE.MOUSE.PAN
+    }
   }
 
   animate()
