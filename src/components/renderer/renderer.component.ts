@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
 import { Mesh } from 'three';
 import { RendererService } from '../../services/renderer.service';
+import { NodemeshComponent } from '../nodemesh/nodemesh.component';
 
 declare const THREE: any;
 
@@ -25,12 +26,12 @@ export class RendererComponent {
   position1 = [100, 100];
   position2 = [-100, -100];
 
-  registeredNodes : Array<Mesh>;
+  registeredNodes : Array<NodemeshComponent>;
 
   constructor(private rendService : RendererService) {
     rendService.renderer = this;
 
-    this.registeredNodes = new Array<Mesh>();
+    this.registeredNodes = new Array<NodemeshComponent>();
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(
       50,
