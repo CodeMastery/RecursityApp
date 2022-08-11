@@ -87,20 +87,23 @@ export class RendererComponent {
   }
 
   configDragControls(a : null) {
-    let nodes =  new Array<Mesh>();
-    this.scene.traverse(function (object) {
-      if (object.isMesh)
-      {
-        console.log(object);
-        nodes.push(object)
-      }  
-    });
+    let nodes = this.getMeshObjects();
     this.dragControls = new DragControls(nodes, this.camera, this.renderer.domElement);
-    console.log(nodes.length)
     this.dragControls.addEventListener('dragstart', this.OnDrag.bind(this))
     this.dragControls.addEventListener('dragend', this.OnDragRelease.bind(this))
   }
 
+  getMeshObjects()
+  {
+    let nodes =  new Array<Mesh>();
+    this.scene.traverse(function (object) {
+      if (object.isMesh)
+      {
+        nodes.push(object)
+      }  
+    });
+    return nodes;
+  }
   OnDrag()
   {
     this.orbitControls.enablePan = false;
