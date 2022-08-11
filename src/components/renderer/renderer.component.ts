@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { DragControls } from 'three/examples/jsm/controls/DragControls';
 import { Mesh } from 'three';
+import { RendererService } from '../../services/renderer.service';
 
 declare const THREE: any;
 
@@ -26,14 +27,16 @@ export class RendererComponent {
 
   registeredNodes : Array<Mesh>;
 
-  constructor() {
+  constructor(private rendService : RendererService) {
+    rendService.renderer = this;
+
     this.registeredNodes = new Array<Mesh>();
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(
       50,
-      (window.innerWidth / window.innerHeight) * 3,
+      (window.innerWidth / window.innerHeight),
       1,
-      1000
+      1000000
     );
     this.orbitControls = new OrbitControls(
       this.camera,
@@ -61,8 +64,8 @@ export class RendererComponent {
 
   configRenderer() {
     this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setClearColor(new THREE.Color('hsl(0, 0%, 30%)'));
-    this.renderer.setSize(window.innerWidth, window.innerHeight / 3);
+    this.renderer.setClearColor(new THREE.Color('hsl(0, 0%, 50%)'));
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.domElement.style.display = 'block';
     this.renderer.domElement.style.margin = 'auto';
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
