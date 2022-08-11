@@ -1,7 +1,15 @@
 <div #rendererContainer></div>
-<p>
-  
-  hi there my name is chad
-
-</p>
-<nodemesh [scene] = "scene" (registerNode)="register($event)" (deregisterNodes)="deregister($event)"></nodemesh>
+<nodemesh
+  [scene]="scene"
+  [position]="position1"
+  (registerNode)="register($event)"
+  (deregisterNodes)="deregister($event)"
+  (refreshDrag)="configDragControls($event)"
+></nodemesh>
+<nodemesh
+  [scene]="scene"
+  [position]=position2
+  (registerNode)="register($event)"
+  (deregisterNodes)="deregister($event)"
+  (refreshDrag)="configDragControls($event)"
+></nodemesh>

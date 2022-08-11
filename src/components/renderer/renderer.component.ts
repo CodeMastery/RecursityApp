@@ -21,6 +21,9 @@ export class RendererComponent {
   dragControls = null;
   plane = null;
 
+  position1 = [100, 100];
+  position2 = [-100, -100];
+
   registeredNodes : Array<Mesh>;
 
   constructor() {
@@ -80,11 +83,31 @@ export class RendererComponent {
     };
   }
 
-  configDragControls() {
+  configDragControls(a : null) {
+    let nodes =  new Array<Mesh>();
     this.scene.traverse(function (object) {
-      if (object.isMesh) console.log(object);
+      if (object.isMesh)
+      {
+        console.log(object);
+        nodes.push(object)
+      }  
     });
+    this.dragControls = new DragControls(nodes, this.camera, this.renderer.domElement);
+    console.log(nodes.length)
+    this.dragControls.addEventListener('dragstart', this.OnDrag.bind(this))
+    this.dragControls.addEventListener('dragend', this.OnDragRelease.bind(this))
   }
+
+  OnDrag()
+  {
+    this.orbitControls.enablePan = false;
+  }
+  OnDragRelease()
+  {
+    this.orbitControls.enablePan = true;
+  }
+
+
   animate() {
     window.requestAnimationFrame(() => this.animate());
     this.orbitControls.update();
