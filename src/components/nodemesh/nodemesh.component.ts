@@ -8,7 +8,6 @@ declare const THREE: any;
   styleUrls: ['./nodemesh.component.css'],
 })
 export class NodemeshComponent implements OnInit {
-  @Input() scene = null;
   @Input() position = null;
   @Output() registerNode = new EventEmitter(THREE.Object3D);
   @Output() deregisterNodes = new EventEmitter();
@@ -25,8 +24,7 @@ export class NodemeshComponent implements OnInit {
     group.translateX(this.position[0]);
     group.translateY(this.position[1]);
 
-    this.scene.add(group);
-    
+    this.rend.renderer.scene.add(group);
     this.registerNode.emit(circle);
     this.refreshDrag.emit()
   }
