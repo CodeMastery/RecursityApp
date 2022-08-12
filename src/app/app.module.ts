@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {NodemapComponent} from '../components/nodemap/nodemap.component'
 import {RendererComponent} from '../components/renderer/renderer.component'
 import {NodemeshComponent} from '../components/nodemesh/nodemesh.component';
+import { ToolsService } from '../services/tools.service';
 
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule ],
   declarations: [ AppComponent, NodemeshComponent, RendererComponent, NodemapComponent ],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers:    [ToolsService]
 })
 export class AppModule { }

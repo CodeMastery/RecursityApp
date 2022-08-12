@@ -39,7 +39,6 @@ export class NodemeshComponent implements OnInit {
     this.connectWithNode(this.rend.renderer.registeredNodes[0]);
   }
 
-  //this.mesh is not the correct mesh, not passing right
   connectWithNode(node : NodemeshComponent) {
     this.connector.push(new ConnectorComponent(this.rend,this, node));
   }
