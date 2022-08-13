@@ -8,10 +8,11 @@ import {RendererComponent} from './Mind-Map/components/renderer/renderer.compone
 import {NodemeshComponent} from './Mind-Map/components/nodemesh/nodemesh.component';
 import { ToolsService } from './Mind-Map/services/tools.service';
 import { appRoutingModule } from './app.routing';
+import {HomeModule} from './Home/components/home/home.module'
 
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, appRoutingModule ],
+  imports:      [ BrowserModule, FormsModule, appRoutingModule, HomeModule],
   declarations: [ AppComponent, NodemeshComponent, RendererComponent, NodemapComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ToolsService]
