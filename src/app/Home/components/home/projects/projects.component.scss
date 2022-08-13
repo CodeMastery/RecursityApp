@@ -1,21 +1,21 @@
 @import "./../../../../variables.scss";
-.proyects {
-    .proyect-container {
+.projects {
+    .project-container {
         height: 360px;
         margin: 100px 0;
-        .proyect-info-left {
+        .project-info-left {
             width: 50%;
             margin-right: -57px;
             margin-left: 0px;
             display: table;
         }
-        .proyect-info-right {
+        .project-info-right {
             width: 50%;
             margin-left: -57px;
             margin-right: 0px;
             display: table;
         }
-        .proyect-box {
+        .project-box {
             display: table-cell;
             vertical-align: middle;
             .feature-proyect {
@@ -26,12 +26,12 @@
                 margin-top: 10px;
                 padding-top: 0;
             }
-            .proyect-name {
+            .project-name {
                 font-size: 28px;
                 margin: 0 0 20px;
                 color: $LightestSlate;
             }
-            .proyect-description-box {
+            .project-description-box {
                 box-shadow: 0 10px 30px -15px rgba(2, 12, 27, 0.7);
                 -webkit-transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
                 transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
